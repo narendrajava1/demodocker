@@ -13,15 +13,19 @@ services:
    volumes:
     - "./conf.d:/etc/mysql/conf.d:rw"
     - "./conf.d/data:/var/lib/mysql"
-  spring:
-    image: narendrajava1/demodocker:1.0
-    ports:
-     - "9696:9696"
-    networks:
-     - demodocker
+   demodocker:
+      container_name: demodocker
+      build:
+            context: .
+            dockerfile: Dockerfile
+      image: narendrajava1/demodocker:1.0
+      ports:
+        - "9696:9696"
+      networks:
+        - demodocker
 #    network_mode: host
-    depends_on:
-     - mysql
+      depends_on:
+        - mysql
 networks:
     demodocker:
         driver: bridge
