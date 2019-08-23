@@ -36,15 +36,31 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- this is for database persistent operations -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<!-- for getting setters andd getters automatically and some methods -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
 		</dependency>
+		<!-- for connecting H2 database -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- for utility methods usage -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<!-- mysql connector for mysqldb -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -57,54 +73,15 @@
 		</plugins>
 	</build>
 
-	<!--?<profiles>
-		<profile>
-			<activation>
-				<property>
-					<name>docker</name>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>io.fabric8</groupId>
-						<artifactId>docker-maven-plugin</artifactId>
-						<version>0.26.0</version>
-						<extensions>true</extensions>
-						<configuration>
-							<verbose>true</verbose>
-							<images>
-								<image>
-									<name>${project.artifactId}</name>
-									<build>
-										<from>java:8-jdk-alpine</from>
-										<entryPoint>
-											<exec>
-												<args>java</args>												
-												<args>-jar</args>
-												<args>/maven/${project.artifactId}-${project.version}.jar</args>
-											</exec>
-										</entryPoint>
-										<assembly>
-											<descriptorRef>artifact</descriptorRef>
-										</assembly>
-									</build>
-								</image>
-							</images>
-						</configuration>
-						<executions>
-							<execution>
-								<id>build</id>
-								<phase>post-integration-test</phase>
-								<goals>
-									<goal>build</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>-->
+	<!--?<profiles> <profile> <activation> <property> <name>docker</name> </property> 
+		</activation> <build> <plugins> <plugin> <groupId>io.fabric8</groupId> <artifactId>docker-maven-plugin</artifactId> 
+		<version>0.26.0</version> <extensions>true</extensions> <configuration> <verbose>true</verbose> 
+		<images> <image> <name>${project.artifactId}</name> <build> <from>java:8-jdk-alpine</from> 
+		<entryPoint> <exec> <args>java</args> <args>-jar</args> <args>/maven/${project.artifactId}-${project.version}.jar</args> 
+		</exec> </entryPoint> <assembly> <descriptorRef>artifact</descriptorRef> 
+		</assembly> </build> </image> </images> </configuration> <executions> <execution> 
+		<id>build</id> <phase>post-integration-test</phase> <goals> <goal>build</goal> 
+		</goals> </execution> </executions> </plugin> </plugins> </build> </profile> 
+		</profiles> -->
 
 </project>
