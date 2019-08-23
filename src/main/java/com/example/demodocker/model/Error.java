@@ -1,4 +1,4 @@
-package com.example.demodocker;
+package com.example.demodocker.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
