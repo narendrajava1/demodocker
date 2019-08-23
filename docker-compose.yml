@@ -6,7 +6,7 @@ services:
     - "3306:3306"
    networks:
     - demodocker
-   network_mode: host
+#   network_mode: host
    environment:
     - MYSQL_ROOT_PASSWORD=milkmachine
     - MYSQL_DATABASE=animal
@@ -19,7 +19,7 @@ services:
      - "9696:9696"
     networks:
      - demodocker
-    network_mode: host
+#    network_mode: host
     depends_on:
      - mysql
 #networks:
