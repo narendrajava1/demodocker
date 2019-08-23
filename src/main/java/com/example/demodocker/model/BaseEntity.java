@@ -2,8 +2,6 @@ package com.example.demodocker.model;
 
 import java.time.ZonedDateTime;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -13,11 +11,10 @@ import lombok.Data;
 
 @MappedSuperclass
 @Data
-public class Animal {
-	@Id
-	@GeneratedValue
-	private long id;
-	private String name;
+public class BaseEntity {
+//	@Id
+//	@GeneratedValue
+//	private Long id;
 	@CreationTimestamp
 	private ZonedDateTime createdDateTime;
 	@UpdateTimestamp
