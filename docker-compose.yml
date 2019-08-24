@@ -8,12 +8,12 @@ services:
     - demodocker
 #   network_mode: host
    environment:
-    - MYSQL_ROOT_PASSWORD=milkmachine
-    - MYSQL_DATABASE=animal
+    - MYSQL_ROOT_PASSWORD=password
+    - MYSQL_DATABASE=test
    volumes:
     - "./conf.d:/etc/mysql/conf.d:rw"
     - "./conf.d/data:/var/lib/mysql"
-   demodocker:
+  demodocker:
       container_name: demodocker
       build:
             context: .
