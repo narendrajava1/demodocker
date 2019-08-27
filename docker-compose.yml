@@ -1,33 +1,21 @@
 version: '3'
-services:
-  mysql:
-   image: mysql:5.7.8
-   ports:
-    - "3306:3306"
-   networks:
-    - demodocker
-#   network_mode: host
-   environment:
-    - MYSQL_ROOT_PASSWORD=password
-    - MYSQL_DATABASE=test
-   volumes:
-    - "./conf.d:/etc/mysql/conf.d:rw"
-    - "./conf.d/data:/var/lib/mysql"
-  demodocker:
-      container_name: demodocker
-      build:
-            context: .
-            dockerfile: Dockerfile
-      image: narendrajava1/demodocker:1.0
-      ports:
-        - "9696:9696"
-      networks:
-        - demodocker
-#    network_mode: host
-      depends_on:
-        - mysql
-networks:
-    demodocker:
-        driver: bridge
-#networks:
-#petclinic:
+
+services: 
+  docker-mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=test
+      - MYSQL_PASSWORD=root
+  spring-boot-jpa-docker-webapp:
+    image: gradle-springboot
+    depends_on:
+      - docker-mysql
+    ports:
+      - 8080:8080
+    environment:
+      - DATABASE_HOST=docker-mysql
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=root
+      - DATABASE_NAME=test  
+      - DATABASE_PORT=3306
