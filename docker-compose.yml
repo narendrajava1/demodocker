@@ -7,6 +7,8 @@ services:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=test
       - MYSQL_PASSWORD=root
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - backend
   spring-boot-jpa-docker-webapp:
     image: gradle-springboot
     build:
@@ -22,3 +24,15 @@ services:
       - DATABASE_PASSWORD=root
       - DATABASE_NAME=test  
       - DATABASE_PORT=3306
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - backend  
+  
+# Volumes
+volumes:
+  db-data:
+
+# Networks to be created to facilitate communication between containers
+networks:
+  backend:
